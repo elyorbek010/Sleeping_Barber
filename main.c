@@ -5,7 +5,7 @@
 #include "barbershop.h"
 #include "debug.h"
 
-#define CLIENTS_N 30
+#define CLIENTS_N 15
 #define CHAIRS_N 5 // number of chairs in waiting room
 
 static void *client_routine(void *arg);
@@ -38,7 +38,7 @@ static void *client_routine(void *arg)
 {
     size_t id = (size_t)pthread_self();
 
-    debug_print("id: %zu entered barbershop\n", id);
+    debug_print("id: %zu entering barbershop\n", id);
 
     barbershop_ret_t ret = have_a_haircut(id);
 
@@ -48,7 +48,7 @@ static void *client_routine(void *arg)
     }
     else if (ret == BARBERSHOP_FULL)
     {
-        debug_print("client id: %zu did not fit, exiting\n", id);
+        debug_print("id: %zu did not fit\n", id);
     }
     else
     {
